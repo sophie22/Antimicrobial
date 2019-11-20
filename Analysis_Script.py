@@ -62,8 +62,9 @@ dates=["-".join(key.split("-")[:2]) for key in calc_dict[practice].keys()]
 values=[value for value in calc_dict[practice].values()]
 #dates= matplotlib.dates.date2num(dates)
 pyplot.figure(figsize=(20,10))
-pyplot.Axes.set_ylabel("Percentage")
-pyplot.Axes.set_xlabel("Date")
+pyplot.title("Percentage of prescriptions that were Antibiotics for {}".format(practice),fontsize=18)
+pyplot.ylabel("Percentage")
+pyplot.xlabel("Date")
 pyplot.plot(dates, values)
 pyplot.xticks(rotation=90)
 
