@@ -49,18 +49,42 @@ if len(zero_values.keys())!=0:
            zero_text.write("{}\n".format(date)) 
     zero_text.close()
 
-#tkinter dropdown for practice selection...?
-##while True:
-##    practice=input("Enter practice name to generate trend graph: ")
-##    practice=practice.upper()
-##    if practice not in calc_dict.keys():
-##        print("Practice is not in data set")
-##    else:
-##        break
-practice="CITY HEALTH CENTRE"
+
+#Gets a sorted list of options for the dropdown
+OPTIONS=[GP for GP in calc_dict.keys()]
+OPTIONS=sorted(OPTIONS)
+#Adds choices to dropdown and selects first one as default
+dropVars=Tkinter.StringVar(rootwindow)
+dropVars.set(OPTIONS[0])
+choices=Tkinter.OptionMenu(rootwindow,dropVars,*OPTIONS)
+choices.pack()
+#close dropdown after selection
+def select():
+    rootwindow.quit()
+#closes dropdown and quits script after clicking cancel
+def cancel():
+    rootwindow.quit()
+    rootwindow.withdraw()
+    print("Selection Cancelled")
+    input("Press Enter to Quit:")
+    sys.exit()
+button = Tkinter.Button(rootwindow, text="Select", command=select)
+button.pack()
+button2 = Tkinter.Button(rootwindow, text="Cancel", command=cancel)
+button2.pack()
+#shows the previously hidden rootwindow
+rootwindow.deiconify()
+rootwindow.title("Select GP Practice")
+rootwindow.geometry("300x100")
+#Runs the selection loop
+rootwindow.mainloop()
+#gets the selection name and stores it in variable practice
+practice=dropVars.get()
+#hides the rootwindow (selection window)
+rootwindow.withdraw()
+
 dates=["-".join(key.split("-")[:2]) for key in calc_dict[practice].keys()]
 values=[value for value in calc_dict[practice].values()]
-#dates= matplotlib.dates.date2num(dates)
 pyplot.figure(figsize=(20,10))
 pyplot.title("Percentage of prescriptions that were Antibiotics for {}".format(practice),fontsize=18)
 pyplot.ylabel("Percentage")
