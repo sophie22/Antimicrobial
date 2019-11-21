@@ -155,18 +155,6 @@ def stats_date():
         for date, values in data_dict[GP].items():
             if date==selected_date:
                 date_dict[GP]=values
-    dates=[key for key in date_dict.keys()]
-    values=[value["Percentage"] for value in date_dict.values()]
-    pyplot.figure(figsize=(20,10))
-    pyplot.title("Percentage of prescriptions that were...",fontsize=18)
-    pyplot.ylabel("Percentage")
-    pyplot.xlabel("Date")
-    pyplot.plot(dates, values)
-    #rotates x-axis and otherwise text runs into each other
-    pyplot.xticks(rotation=90)
-
-    pyplot.savefig('Trend')
-    pyplot.close()
     values=sorted(date_dict.items(), key=lambda kv:kv[1])
     top_name, top=values[-1][0],values[-1][1]
     low_name, low=values[0][0],values[0][1]
