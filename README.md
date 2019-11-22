@@ -24,11 +24,11 @@ Population and prescription data with no missing values are merged on practices 
 3.2. Choose whether to see stats by date or by practice:
         Select date/practice from dropdown list
         Output is a file containing practice/date with the
-        * highest
-        * lowest
-        * mean prescription rate
-        * as well as those above
-        * or below the mean +/- standard deviation.
+* highest
+* lowest
+* mean prescription rate
+* as well as those above
+* or below the mean +/- standard deviation.
 
 
 To test the script:
